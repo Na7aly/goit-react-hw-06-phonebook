@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { v4 as uuidv4 } from 'uuid';
 
 const ContactForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
@@ -7,7 +8,8 @@ const ContactForm = ({ onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ name, number });
+    const newContact = { id: uuidv4(), name, number };
+    onSubmit(newContact);
     setName('');
     setNumber('');
   };
